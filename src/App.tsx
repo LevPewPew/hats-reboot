@@ -1,8 +1,16 @@
 import React from 'react';
-import './App.css';
+import styled from 'styled-components';
 
-function App() {
-  return <div className="App"></div>;
+interface AppProps {
+  className: string;
 }
 
-export default App;
+export const App: React.FC<AppProps> = ({ className }) => {
+  return (
+    <div className={className}>
+      <div>App PLACEHOLDER</div>
+    </div>
+  );
+};
+
+export default styled(App)``;
