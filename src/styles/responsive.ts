@@ -1,7 +1,6 @@
 import { css } from 'styled-components';
 
-// TODO find out how to change TS config to not allow so much inference
-const breakpoints: object = {
+const breakpoints: Record<string, any> = {
   smallScreen: 1280,
   largeTablet: 1024,
   tablet: 768,
@@ -9,15 +8,12 @@ const breakpoints: object = {
   smallMobile: 375,
 };
 
-export const respondTo: {} = Object.keys(breakpoints).reduce(
-  (accumulator: {}, label: string) => {
-    accumulator[label] = (...args) => css`
-      @media (max-width: ${breakpoints[label] + 'px'}) {
-        ${css(...args)};
-      }
-    `;
+export const respondTo = Object.keys(breakpoints).reduce((accumulator: Record<string, object>, label: string) => {
+  accumulator[label] = (literals: TemplateStringsArray, ...args: any[]) => css`
+    @media (max-width: ${breakpoints[label] + 'px'}) {
+      ${css(literals, ...args)};
+    }
+  `;
 
-    return accumulator;
-  },
-  {},
-);
+  return accumulator;
+}, {});
