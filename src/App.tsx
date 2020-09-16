@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface AppProps {
-  className: string;
+  className?: string;
 }
 
 export const App: React.FC<AppProps> = ({ className }) => {
