@@ -1,16 +1,24 @@
-import { DECREMENT_TIMER, RESET_TIMER } from './action-types';
+import { ActionTypes } from './action-types';
 
-const TOTAL_ROUND_TIME = 45;
+interface DecrementTimerAction {
+  type: ActionTypes.DECREMENT_TIMER;
+}
 
-export function decrementTimer() {
+interface ResetTimerAction {
+  type: ActionTypes.RESET_TIMER;
+}
+
+// FIXME deal with refactoring to the easier, neater, less boilerplate and upkeep pattern later.
+export type GameActions = DecrementTimerAction | ResetTimerAction;
+
+export function decrementTimer(): DecrementTimerAction {
   return {
-    action: DECREMENT_TIMER,
+    type: ActionTypes.DECREMENT_TIMER,
   };
 }
 
-export function resetTimer() {
+export function resetTimer(): ResetTimerAction {
   return {
-    action: RESET_TIMER,
-    value: TOTAL_ROUND_TIME,
+    type: ActionTypes.RESET_TIMER,
   };
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface MainMenuPageProps {
-  className: string;
+  className?: string;
 }
 
 export const MainMenuPage: React.FC<MainMenuPageProps> = ({ className }) => {

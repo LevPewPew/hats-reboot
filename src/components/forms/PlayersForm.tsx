@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface PlayersFormProps {
-  className: string;
+  className?: string;
 }
 
 export const PlayersForm: React.FC<PlayersFormProps> = ({ className }) => {

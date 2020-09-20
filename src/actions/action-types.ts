@@ -1,2 +1,4 @@
-export const DECREMENT_TIMER = 'DECREMENT_TIMER';
-export const RESET_TIMER = 'RESET_TIMER';
+export enum ActionTypes {
+  DECREMENT_TIMER = 'DECREMENT_TIMER',
+  RESET_TIMER = 'RESET_TIMER',
+}

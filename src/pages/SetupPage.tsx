@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface SetupPageProps {
-  className: string;
+  className?: string;
 }
 
 export const SetupPage: React.FC<SetupPageProps> = ({ className }) => {

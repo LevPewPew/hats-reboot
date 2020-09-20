@@ -1,1 +1,1 @@
-// placeholder
+type Optional<T> = T | undefined;

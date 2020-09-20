@@ -2,13 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface GeneralBtnProps {
-  className: string;
+  children: React.ReactNode;
+  className?: string;
+  handleClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => any;
 }
 
-export const GeneralBtn: React.FC<GeneralBtnProps> = ({ className }) => {
+export const GeneralBtn: React.FC<GeneralBtnProps> = ({ children, className, handleClick }) => {
   return (
-    <button className={className}>
-      <div>GeneralBtn PLACEHOLDER</div>
+    <button className={className} onClick={handleClick} type="button">
+      {children}
     </button>
   );
 };

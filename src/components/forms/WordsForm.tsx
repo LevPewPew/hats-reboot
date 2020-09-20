@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface WordsFormProps {
-  className: string;
+  className?: string;
 }
 
 export const WordsForm: React.FC<WordsFormProps> = ({ className }) => {

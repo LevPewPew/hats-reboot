@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface ScorePageProps {
-  className: string;
+  className?: string;
 }
 
 export const ScorePage: React.FC<ScorePageProps> = ({ className }) => {

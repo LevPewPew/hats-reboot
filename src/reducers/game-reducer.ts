@@ -1,4 +1,7 @@
-import { DECREMENT_TIMER, RESET_TIMER } from '../actions/action-types';
+import { ActionTypes } from '../actions/action-types';
+import { GameActions } from '../actions/game-actions';
+
+const TOTAL_ROUND_TIME = 45; // FIXME put this into settings
 
 interface GameState {
   timer: number;
@@ -6,19 +9,19 @@ interface GameState {
 
 const initialState: GameState = { timer: 0 };
 
-function gameReducer(state: GameState = initialState, action: any) {
+function gameReducer(state: GameState = initialState, action: GameActions) {
   let newState: GameState;
 
   switch (action.type) {
-    case DECREMENT_TIMER:
+    case ActionTypes.DECREMENT_TIMER:
       return {
         ...state,
-        timer: state.timer + 1,
+        timer: state.timer - 1,
       };
-    case RESET_TIMER:
+    case ActionTypes.RESET_TIMER:
       return {
         ...state,
-        timer: action.value,
+        timer: TOTAL_ROUND_TIME,
       };
     default:
       newState = { ...state };

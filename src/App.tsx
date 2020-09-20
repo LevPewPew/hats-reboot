@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { GamePage } from 'src/pages';
 
 interface AppProps {
   className?: string;
@@ -8,7 +9,7 @@ interface AppProps {
 export const App: React.FC<AppProps> = ({ className }) => {
   return (
     <div className={className}>
-      <div>App PLACEHOLDER</div>
+      <GamePage />
     </div>
   );
 };
