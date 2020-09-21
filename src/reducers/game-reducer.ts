@@ -1,15 +1,13 @@
 import { GameActionType } from 'src/actions/action-types';
 import { GameAction } from '@hats-reboot/state-management-types';
 
-const TOTAL_ROUND_TIME = 45;
-
 interface GameState {
   timer: number;
 }
 
 const initialState: GameState = { timer: 0 };
 
-function gameReducer(state: GameState = initialState, action: GameAction) {
+function gameReducer(state: GameState = initialState, action: GameAction): GameState {
   let newState: GameState;
 
   switch (action.type) {
@@ -21,7 +19,7 @@ function gameReducer(state: GameState = initialState, action: GameAction) {
     case GameActionType.RESET_TIMER:
       return {
         ...state,
-        timer: TOTAL_ROUND_TIME,
+        timer: action.payload,
       };
     default:
       newState = { ...state };

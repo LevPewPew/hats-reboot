@@ -7,7 +7,7 @@ interface SettingsState {
 
 const initialState: SettingsState = { timePerTurn: 45 };
 
-function settingsReducer(state: SettingsState = initialState, action: SettingsAction) {
+function settingsReducer(state: SettingsState = initialState, action: SettingsAction): SettingsState {
   let newState: SettingsState;
 
   switch (action.type) {
