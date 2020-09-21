@@ -1,4 +1,4 @@
-import { ActionType } from '../actions/action-types';
+import { ActionType } from 'src/actions/action-types';
 import StateManagement from '@hats-reboot/state-management-types';
 
 const TOTAL_ROUND_TIME = 45;

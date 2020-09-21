@@ -14,7 +14,7 @@ interface TimerProps {
 }
 
 export const Timer: React.FC<TimerProps> = ({ className }) => {
-  const timer: number = useSelector((state: RootState) => state.gameReducer.timer);
+  const timer: number = useSelector((state: RootState): number => state.gameReducer.timer);
 
   return (
     <div className={className}>

@@ -1,10 +1,10 @@
 import { ActionType } from './action-types';
 
-interface DecrementTimerAction {
+export interface DecrementTimerAction {
   type: ActionType.DECREMENT_TIMER;
 }
 
-interface ResetTimerAction {
+export interface ResetTimerAction {
   type: ActionType.RESET_TIMER;
 }
 
