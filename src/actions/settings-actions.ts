@@ -1,0 +1,21 @@
+import { SettingsActionType } from './action-types';
+
+export interface DecrementTimePerTurnAction {
+  type: SettingsActionType.DECREMENT_TIME_PER_TURN;
+}
+
+export interface IncrementTimePerTurnAction {
+  type: SettingsActionType.INCREMENT_TIME_PER_TURN;
+}
+
+export function decrementTimePerTurn(): DecrementTimePerTurnAction {
+  return {
+    type: SettingsActionType.DECREMENT_TIME_PER_TURN,
+  };
+}
+
+export function resetTimePerTurn(): IncrementTimePerTurnAction {
+  return {
+    type: SettingsActionType.INCREMENT_TIME_PER_TURN,
+  };
+}

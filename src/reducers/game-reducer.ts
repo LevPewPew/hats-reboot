@@ -1,4 +1,4 @@
-import { ActionType } from 'src/actions/action-types';
+import { GameActionType } from 'src/actions/action-types';
 import { GameAction } from '@hats-reboot/state-management-types';
 
 const TOTAL_ROUND_TIME = 45;
@@ -13,12 +13,12 @@ function gameReducer(state: GameState = initialState, action: GameAction) {
   let newState: GameState;
 
   switch (action.type) {
-    case ActionType.DECREMENT_TIMER:
+    case GameActionType.DECREMENT_TIMER:
       return {
         ...state,
         timer: state.timer - 1,
       };
-    case ActionType.RESET_TIMER:
+    case GameActionType.RESET_TIMER:
       return {
         ...state,
         timer: TOTAL_ROUND_TIME,

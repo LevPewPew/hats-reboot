@@ -1,21 +1,21 @@
-import { ActionType } from './action-types';
+import { GameActionType } from './action-types';
 
 export interface DecrementTimerAction {
-  type: ActionType.DECREMENT_TIMER;
+  type: GameActionType.DECREMENT_TIMER;
 }
 
 export interface ResetTimerAction {
-  type: ActionType.RESET_TIMER;
+  type: GameActionType.RESET_TIMER;
 }
 
 export function decrementTimer(): DecrementTimerAction {
   return {
-    type: ActionType.DECREMENT_TIMER,
+    type: GameActionType.DECREMENT_TIMER,
   };
 }
 
 export function resetTimer(): ResetTimerAction {
   return {
-    type: ActionType.RESET_TIMER,
+    type: GameActionType.RESET_TIMER,
   };
 }
