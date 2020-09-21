@@ -1,20 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-
-// FIXME RootState thing seems bad
-interface RootState {
-  gameReducer: {
-    timer: number;
-  };
-}
+import { RootState } from '@hats-reboot/state-management-types';
 
 interface TimerProps {
   className?: string;
 }
 
 export const Timer: React.FC<TimerProps> = ({ className }) => {
-  const timer: number = useSelector((state: RootState): number => state.gameReducer.timer);
+  const timer: number = useSelector<RootState, number>((state) => state.gameReducer.timer);
 
   return (
     <div className={className}>
