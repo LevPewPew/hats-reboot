@@ -1,7 +1,7 @@
-import { ActionTypes } from '../actions/action-types';
-import { GameActions } from '../actions/game-actions';
+import { ActionType } from '../actions/action-types';
+import StateManagement from '@hats-reboot/state-management-types';
 
-const TOTAL_ROUND_TIME = 45; // FIXME put this into settings
+const TOTAL_ROUND_TIME = 45;
 
 interface GameState {
   timer: number;
@@ -9,16 +9,16 @@ interface GameState {
 
 const initialState: GameState = { timer: 0 };
 
-function gameReducer(state: GameState = initialState, action: GameActions) {
+function gameReducer(state: GameState = initialState, action: StateManagement.GameAction): GameState {
   let newState: GameState;
 
   switch (action.type) {
-    case ActionTypes.DECREMENT_TIMER:
+    case ActionType.DECREMENT_TIMER:
       return {
         ...state,
         timer: state.timer - 1,
       };
-    case ActionTypes.RESET_TIMER:
+    case ActionType.RESET_TIMER:
       return {
         ...state,
         timer: TOTAL_ROUND_TIME,

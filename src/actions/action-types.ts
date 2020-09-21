@@ -1,4 +1,4 @@
-export enum ActionTypes {
+export enum ActionType {
   DECREMENT_TIMER = 'DECREMENT_TIMER',
   RESET_TIMER = 'RESET_TIMER',
 }
