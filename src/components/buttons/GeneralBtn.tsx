@@ -4,7 +4,7 @@ import styled from 'styled-components';
 interface GeneralBtnProps {
   children: React.ReactNode;
   className?: string;
-  handleClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => any;
+  handleClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 export const GeneralBtn: React.FC<GeneralBtnProps> = ({ children, className, handleClick }) => {
