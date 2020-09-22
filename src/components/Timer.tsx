@@ -8,8 +8,8 @@ interface TimerProps {
 }
 
 export const Timer: React.FC<TimerProps> = ({ className }) => {
-  const timer: number = useSelector<RootState, number>((state) => state.gameReducer.timer);
-  const timePerTurn: number = useSelector<RootState, number>((state) => state.settingsReducer.timePerTurn);
+  const timer = useSelector<RootState, number>((state) => state.gameReducer.timer);
+  const timePerTurn = useSelector<RootState, number>((state) => state.settingsReducer.timePerTurn);
 
   return (
     <div className={className}>

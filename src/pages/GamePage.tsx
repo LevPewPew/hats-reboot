@@ -6,7 +6,6 @@ import { decrementTimer, resetTimerThunk } from 'src/actions/game-actions';
 import { useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
 import { DecrementTimerAction, ResetTimerAction } from 'src/actions/game-actions';
-import { ThunkDispatch } from 'redux-thunk';
 import { AppThunkAction } from '@hats-reboot/state-management-types';
 
 interface GamePageProps {
@@ -14,15 +13,15 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ className }) => {
-  const dispatch: Dispatch<any> | ThunkDispatch<any, any, any> = useDispatch();
+  const dispatch = useDispatch();
 
   return (
     <main className={className}>
       <Timer />
-      <GeneralBtn handleClick={() => dispatch<DecrementTimerAction>(decrementTimer())}>
+      <GeneralBtn handleClick={() => dispatch(decrementTimer())}>
         <div>DECREMENT</div>
       </GeneralBtn>
-      <GeneralBtn handleClick={() => dispatch<AppThunkAction<ResetTimerAction>>(resetTimerThunk())}>
+      <GeneralBtn handleClick={() => dispatch(resetTimerThunk())}>
         <div>RESET</div>
       </GeneralBtn>
     </main>

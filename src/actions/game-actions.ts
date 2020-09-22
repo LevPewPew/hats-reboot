@@ -24,10 +24,12 @@ export function resetTimer(value: number): ResetTimerAction {
   };
 }
 
+// FIXME fix that this doesn't seem to actually make anything safe, or just make it as referred as possible?
+// FIXME change this variables name to not be thunk
 export function resetTimerThunk(): AppThunkAction<ResetTimerAction> {
-  return (dispatch: Dispatch<any>, getState: () => RootState) => {
-    const { timePerTurn }: { timePerTurn: number } = getState().settingsReducer;
+  return (dispatch, getState) => {
+    const { timePerTurn } = getState().settingsReducer;
 
-    dispatch<ResetTimerAction>(resetTimer(timePerTurn));
+    dispatch(resetTimer(timePerTurn));
   };
 }
