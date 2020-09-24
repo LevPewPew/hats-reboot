@@ -14,7 +14,7 @@ function settingsReducer(state: SettingsState = initialState, action: SettingsAc
     case SettingsActionType.DECREMENT_TIME_PER_TURN:
       return {
         ...state,
-        timePerTurn: state.timePerTurn - 1,
+        timePerTurn: state.timePerTurn > 10 ? state.timePerTurn - 1 : state.timePerTurn,
       };
     case SettingsActionType.INCREMENT_TIME_PER_TURN:
       return {

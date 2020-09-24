@@ -14,7 +14,7 @@ function gameReducer(state: GameState = initialState, action: GameAction): GameS
     case GameActionType.DECREMENT_TIMER:
       return {
         ...state,
-        timer: state.timer - 1,
+        timer: state.timer > 0 ? state.timer - 1 : state.timer,
       };
     case GameActionType.RESET_TIMER:
       return {
