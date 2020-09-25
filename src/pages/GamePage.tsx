@@ -1,19 +1,33 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
-import { Timer } from 'src/components';
+import { Timer, WordDisplay } from 'src/components';
 import { GeneralBtn } from 'src/components/buttons';
 import { decrementTimer, resetTimer } from 'src/actions/game-actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { sample } from 'src/utils/array';
+import { RootState } from '@hats-reboot/state-management-types';
 
 interface GamePageProps {
   className?: string;
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ className }) => {
+  const words = useSelector<RootState, Array<string>>((state) => state.gameReducer.words);
+  const [hat, setHat] = useState(words);
   const [isTimerTicking, setIsTimerTicking] = useState(false);
+  const [currentWord, setCurrentWord] = useState('');
   const dispatch = useDispatch();
   const firstRender = useRef(true);
   const intervalId = useRef(0);
+
+  const pickWord = (): void => {
+    setCurrentWord(sample(hat));
+  };
+
+  const removeWord = (correctWord: string): void => {
+    const newHat = hat.filter((e) => e !== correctWord);
+    setHat(newHat);
+  };
 
   useEffect(() => {
     if (firstRender.current) {
@@ -30,6 +44,9 @@ export const GamePage: React.FC<GamePageProps> = ({ className }) => {
 
   return (
     <main className={className}>
+      <WordDisplay>
+        <span>{currentWord}</span>
+      </WordDisplay>
       <Timer />
       <GeneralBtn handleClick={() => dispatch(decrementTimer())}>
         <div>DECREMENT</div>
@@ -39,6 +56,17 @@ export const GamePage: React.FC<GamePageProps> = ({ className }) => {
       </GeneralBtn>
       <GeneralBtn handleClick={() => (isTimerTicking ? setIsTimerTicking(false) : setIsTimerTicking(true))}>
         <div>{isTimerTicking ? 'PAUSE' : 'RESUME'}</div>
+      </GeneralBtn>
+      <GeneralBtn handleClick={() => pickWord()}>
+        <div>START!</div>
+      </GeneralBtn>
+      <GeneralBtn
+        handleClick={() => {
+          removeWord(currentWord);
+          pickWord();
+        }}
+      >
+        <div>CORRECT</div>
       </GeneralBtn>
     </main>
   );

@@ -1,11 +1,13 @@
 import { GameActionType } from 'src/actions/action-types';
 import { GameAction } from '@hats-reboot/state-management-types';
+import { words } from '../seed-data';
 
 interface GameState {
+  words: Array<string>;
   timer: number;
 }
 
-const initialState: GameState = { timer: 0 };
+const initialState: GameState = { words: words, timer: 0 };
 
 function gameReducer(state: GameState = initialState, action: GameAction): GameState {
   let newState: GameState;
