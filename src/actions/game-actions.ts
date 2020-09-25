@@ -10,8 +10,6 @@ export interface ResetTimerAction {
   payload: number;
 }
 
-// export interface Set
-
 export function decrementTimer(): DecrementTimerAction {
   return {
     type: GameActionType.DECREMENT_TIMER,
