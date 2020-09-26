@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 interface GameCtrlContainerProps {
   className?: string;
-  children: React.ReactNode;
 }
 
 export const GameCtrlContainer: React.FC<GameCtrlContainerProps> = ({ className, children }) => {

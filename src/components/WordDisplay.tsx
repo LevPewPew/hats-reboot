@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface WordDisplayProps {
-  children: React.ReactNode;
   className?: string;
 }
 

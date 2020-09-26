@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface GeneralBtnProps {
-  children: React.ReactNode;
   className?: string;
   handleClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }

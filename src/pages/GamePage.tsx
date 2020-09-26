@@ -40,7 +40,7 @@ export const GamePage: React.FC<GamePageProps> = ({ className }) => {
     } else {
       clearInterval(intervalId.current);
     }
-  }, [isTimerTicking]);
+  }, [dispatch, isTimerTicking]);
 
   return (
     <main className={className}>

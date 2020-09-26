@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 interface MainProps {
   className?: string;
-  children: React.ReactNode;
 }
 
 export const Main: React.FC<MainProps> = ({ className, children }) => {

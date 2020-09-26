@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 interface HeaderProps {
   className?: string;
-  children: React.ReactNode;
 }
 
 export const Header: React.FC<HeaderProps> = ({ className, children }) => {

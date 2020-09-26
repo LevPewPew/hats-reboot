@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 interface InstructionsContainerProps {
   className?: string;
-  children: React.ReactNode;
 }
 
 export const InstructionsContainer: React.FC<InstructionsContainerProps> = ({ className, children }) => {
