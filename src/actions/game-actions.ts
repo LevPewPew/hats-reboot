@@ -10,6 +10,10 @@ export interface ResetTimerAction {
   payload: number;
 }
 
+export interface IncrementRoundAction {
+  type: GameActionType.INCREMENT_ROUND;
+}
+
 export function decrementTimer(): DecrementTimerAction {
   return {
     type: GameActionType.DECREMENT_TIMER,
@@ -28,5 +32,11 @@ export function resetTimer(): AppThunkAction<ResetTimerAction> {
     const { timePerTurn } = getState().settingsReducer;
 
     dispatch(setTimer(timePerTurn));
+  };
+}
+
+export function incrementRound(): IncrementRoundAction {
+  return {
+    type: GameActionType.INCREMENT_ROUND,
   };
 }

@@ -1,6 +1,7 @@
 export enum GameActionType {
   DECREMENT_TIMER = 'DECREMENT_TIMER',
   RESET_TIMER = 'RESET_TIMER',
+  INCREMENT_ROUND = 'INCREMENT_ROUND',
 }
 
 export enum SettingsActionType {

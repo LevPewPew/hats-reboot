@@ -3,11 +3,12 @@ import { GameAction } from '@hats-reboot/state-management-types';
 import { words } from '../seed-data';
 
 interface GameState {
-  words: Array<string>;
+  round: number;
   timer: number;
+  words: Array<string>;
 }
 
-const initialState: GameState = { words: words, timer: 0 };
+const initialState: GameState = { round: 1, timer: 0, words: words };
 
 function gameReducer(state: GameState = initialState, action: GameAction): GameState {
   let newState: GameState;
@@ -22,6 +23,11 @@ function gameReducer(state: GameState = initialState, action: GameAction): GameS
       return {
         ...state,
         timer: action.payload,
+      };
+    case GameActionType.INCREMENT_ROUND:
+      return {
+        ...state,
+        round: state.round + 1,
       };
     default:
       newState = { ...state };

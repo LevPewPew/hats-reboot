@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { Timer, WordDisplay } from 'src/components';
 import { GeneralBtn } from 'src/components/buttons';
-import { decrementTimer, resetTimer } from 'src/actions/game-actions';
+import { decrementTimer, resetTimer, incrementRound } from 'src/actions/game-actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { sample } from 'src/utils/array';
 import { RootState } from '@hats-reboot/state-management-types';
@@ -12,6 +12,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ className }) => {
+  const round = useSelector<RootState, number>((state) => state.gameReducer.round);
   const words = useSelector<RootState, Array<string>>((state) => state.gameReducer.words);
   const [hat, setHat] = useState(words);
   const [isTimerTicking, setIsTimerTicking] = useState(false);
@@ -42,8 +43,15 @@ export const GamePage: React.FC<GamePageProps> = ({ className }) => {
     }
   }, [dispatch, isTimerTicking]);
 
+  useEffect(() => {
+    if (hat.length === 0) {
+      dispatch(incrementRound());
+    }
+  }, [hat.length]);
+
   return (
     <main className={className}>
+      <div>Current Round: {round}</div>
       <WordDisplay>
         <span>{currentWord}</span>
       </WordDisplay>
