@@ -1,15 +1,18 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { RootState } from '@hats-reboot/state-management-types';
 
 interface ScorePageProps {
   className?: string;
-  roundCompleted: number;
 }
 
-export const ScorePage: React.FC<ScorePageProps> = ({ className, roundCompleted }) => {
+export const ScorePage: React.FC<ScorePageProps> = ({ className }) => {
+  const round = useSelector<RootState, number>((state) => state.gameReducer.round);
+
   return (
     <main className={className}>
-      <h1>Round {roundCompleted} complete!</h1>
+      <h1>Round {round} complete!</h1>
     </main>
   );
 };

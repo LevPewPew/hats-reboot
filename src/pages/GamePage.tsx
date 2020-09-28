@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Timer, WordDisplay } from 'src/components';
 import { GeneralBtn } from 'src/components/buttons';
@@ -12,6 +13,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ className }) => {
+  const history = useHistory();
   const round = useSelector<RootState, number>((state) => state.gameReducer.round);
   const words = useSelector<RootState, Array<string>>((state) => state.gameReducer.words);
   const [hat, setHat] = useState(words);
@@ -45,7 +47,7 @@ export const GamePage: React.FC<GamePageProps> = ({ className }) => {
 
   useEffect(() => {
     if (hat.length === 0) {
-      dispatch(incrementRound());
+      history.push('/scores');
     }
   }, [hat.length]);
 
