@@ -13,6 +13,7 @@ function gameReducer(state: GameState = initialState, action: GameAction): GameS
   switch (action.type) {
     case GameActionType.INCREMENT_PLAYERS_SCORE:
       return {
+        // TODO logic to increase a specific players score
         ...state,
       };
     default:

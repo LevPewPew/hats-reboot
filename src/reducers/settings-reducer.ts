@@ -5,7 +5,8 @@ interface SettingsState {
   timePerTurn: number;
 }
 
-const initialState: SettingsState = { timePerTurn: 45 };
+// FIXME change to 45 default once finished devving
+const initialState: SettingsState = { timePerTurn: 3 };
 
 function settingsReducer(state: SettingsState = initialState, action: SettingsAction): SettingsState {
   switch (action.type) {

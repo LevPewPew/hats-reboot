@@ -49,8 +49,10 @@ export const ScoreTable: React.FC<ScoreTableProps> = ({ className, allScores }) 
     <div className={className}>
       <div className="headers">
         <div className="header"></div>
-        {allScores[0].scores.map((score) => (
-          <div className="header">Round {score.round}</div>
+        {allScores[0].scores.map((score, i) => (
+          <div key={i} className="header">
+            Round {score.round}
+          </div>
         ))}
         <div className="header">Total</div>
       </div>
@@ -63,7 +65,7 @@ export const ScoreTable: React.FC<ScoreTableProps> = ({ className, allScores }) 
           const totalPlayer2 = allScores[i + 1].scores.reduce((acc, cv) => acc + cv.score, 0);
           const total = totalPlayer1 + totalPlayer2;
 
-          return <Total total={total} />;
+          return <Total key={i} total={total} />;
         } else {
           return null;
         }
