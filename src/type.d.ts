@@ -1,5 +1,17 @@
 type Optional<T> = T | undefined;
 
+interface Score {
+  round: number;
+  score: number;
+}
+
+interface Player {
+  name: string;
+  team: number;
+  scores: Array<Score>;
+  turnOrder: number;
+}
+
 declare module '@hats-reboot/state-management-types' {
   import { StateType, ActionType } from 'typesafe-actions';
   import { ThunkAction } from 'redux-thunk';
@@ -9,7 +21,7 @@ declare module '@hats-reboot/state-management-types' {
   // reference error
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   export type AppThunkAction<T> = ThunkAction<void, any, null, T>;
+  export type PlayAction = ActionType<typeof import('./actions/play-actions')>;
   export type GameAction = ActionType<typeof import('./actions/game-actions')>;
-  export type ScoresAction = ActionType<typeof import('./actions/scores-actions')>;
   export type SettingsAction = ActionType<typeof import('./actions/settings-actions')>;
 }

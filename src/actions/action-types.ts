@@ -1,4 +1,4 @@
-export enum GameActionType {
+export enum PlayActionType {
   DECREMENT_TIMER = 'DECREMENT_TIMER',
   SET_TIMER = 'SET_TIMER',
   INCREMENT_ROUND = 'INCREMENT_ROUND',
@@ -9,6 +9,6 @@ export enum SettingsActionType {
   INCREMENT_TIME_PER_TURN = 'INCREMENT_TIME_PER_TURN',
 }
 
-export enum ScoresActionType {
+export enum GameActionType {
   INCREMENT_PLAYERS_SCORE = 'INCREMENT_PLAYERS_SCORE',
 }

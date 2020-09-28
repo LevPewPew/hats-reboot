@@ -3,18 +3,18 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Timer, WordDisplay } from 'src/components';
 import { GeneralBtn } from 'src/components/buttons';
-import { decrementTimer, resetTimer, incrementRound } from 'src/actions/game-actions';
+import { decrementTimer, resetTimer } from 'src/actions/play-actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { sample } from 'src/utils/array';
 import { RootState } from '@hats-reboot/state-management-types';
 
-interface GamePageProps {
+interface PlayPageProps {
   className?: string;
 }
 
-export const GamePage: React.FC<GamePageProps> = ({ className }) => {
+export const PlayPage: React.FC<PlayPageProps> = ({ className }) => {
   const history = useHistory();
-  const round = useSelector<RootState, number>((state) => state.gameReducer.round);
+  const round = useSelector<RootState, number>((state) => state.playReducer.round);
   const words = useSelector<RootState, Array<string>>((state) => state.gameReducer.words);
   const [hat, setHat] = useState(words);
   const [isTimerTicking, setIsTimerTicking] = useState(false);
@@ -49,7 +49,7 @@ export const GamePage: React.FC<GamePageProps> = ({ className }) => {
     if (hat.length === 0) {
       history.push('/scores');
     }
-  }, [hat.length]);
+  }, [hat.length, history]);
 
   return (
     <main className={className}>
@@ -82,4 +82,4 @@ export const GamePage: React.FC<GamePageProps> = ({ className }) => {
   );
 };
 
-export default styled(GamePage)``;
+export default styled(PlayPage)``;

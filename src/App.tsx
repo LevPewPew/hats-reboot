@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import { GamePage, MainMenuPage, ScorePage, SettingsPage, SetupPage } from 'src/pages';
+import { PlayPage, MainMenuPage, ScorePage, SettingsPage, SetupPage } from 'src/pages';
 
 interface AppProps {
   className?: string;
@@ -18,8 +18,8 @@ export const App: React.FC<AppProps> = ({ className }) => {
           <Route path="/setup">
             <SetupPage />
           </Route>
-          <Route path="/game">
-            <GamePage />
+          <Route path="/play">
+            <PlayPage />
           </Route>
           <Route path="/scores">
             <ScorePage />

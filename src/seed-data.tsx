@@ -1,5 +1,5 @@
 // this is just dummy/seed data for dev
-// implementing the gameplay itself first,
+// implementing the game play itself first,
 // then i will remove this and create the setup screens and forms for players
 // to populate the data
 
