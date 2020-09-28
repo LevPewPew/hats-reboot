@@ -8,31 +8,67 @@ export const players = [
     name: 'jack',
     team: 0,
     turnOrder: 0,
+    scores: [
+      {
+        round: 1,
+        score: 3,
+      },
+    ],
   },
   {
     name: 'jill',
     team: 0,
     turnOrder: 3,
+    scores: [
+      {
+        round: 1,
+        score: 7,
+      },
+    ],
   },
   {
     name: 'thelma',
     team: 1,
     turnOrder: 1,
+    scores: [
+      {
+        round: 1,
+        score: 13,
+      },
+    ],
   },
   {
     name: 'louise',
     team: 1,
     turnOrder: 4,
+    scores: [
+      {
+        round: 1,
+        score: 2,
+      },
+    ],
   },
   {
     name: 'ben',
     team: 2,
     turnOrder: 2,
+    scores: [
+      {
+        round: 1,
+        score: 4,
+      },
+    ],
   },
   {
     name: 'jerry',
     team: 2,
     turnOrder: 5,
+    scores: [
+      {
+        round: 1,
+        score: 1,
+      },
+    ],
   },
 ];
 

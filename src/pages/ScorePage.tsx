@@ -8,11 +8,12 @@ interface ScorePageProps {
 }
 
 export const ScorePage: React.FC<ScorePageProps> = ({ className }) => {
-  const round = useSelector<RootState, number>((state) => state.gameReducer.round);
+  // const round = useSelector<RootState, number>((state) => state.gameReducer.round);
 
   return (
     <main className={className}>
-      <h1>Round {round} complete!</h1>
+      {/* <h1>Round {round} complete!</h1> */}
+      <h2>SCORES</h2>
     </main>
   );
 };

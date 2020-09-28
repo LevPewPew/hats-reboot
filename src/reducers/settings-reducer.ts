@@ -8,8 +8,6 @@ interface SettingsState {
 const initialState: SettingsState = { timePerTurn: 45 };
 
 function settingsReducer(state: SettingsState = initialState, action: SettingsAction): SettingsState {
-  let newState: SettingsState;
-
   switch (action.type) {
     case SettingsActionType.DECREMENT_TIME_PER_TURN:
       return {
@@ -22,10 +20,8 @@ function settingsReducer(state: SettingsState = initialState, action: SettingsAc
         timePerTurn: state.timePerTurn + 1,
       };
     default:
-      newState = { ...state };
+      return { ...state };
   }
-
-  return newState;
 }
 
 export default settingsReducer;

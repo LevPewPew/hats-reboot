@@ -1,4 +1,4 @@
-import { SettingsActionType } from './action-types';
+import { SettingsActionType } from 'src/actions/action-types';
 
 export interface DecrementTimePerTurnAction {
   type: SettingsActionType.DECREMENT_TIME_PER_TURN;

@@ -1,13 +1,13 @@
-import { GameActionType } from './action-types';
+import { GameActionType } from 'src/actions/action-types';
 import { AppThunkAction } from '@hats-reboot/state-management-types';
 
 export interface DecrementTimerAction {
   type: GameActionType.DECREMENT_TIMER;
 }
 
-export interface ResetTimerAction {
-  type: GameActionType.RESET_TIMER;
-  payload: number;
+export interface SetTimerAction {
+  type: GameActionType.SET_TIMER;
+  value: number;
 }
 
 export interface IncrementRoundAction {
@@ -20,14 +20,14 @@ export function decrementTimer(): DecrementTimerAction {
   };
 }
 
-export function setTimer(value: number): ResetTimerAction {
+export function setTimer(value: number): SetTimerAction {
   return {
-    type: GameActionType.RESET_TIMER,
-    payload: value,
+    type: GameActionType.SET_TIMER,
+    value,
   };
 }
 
-export function resetTimer(): AppThunkAction<ResetTimerAction> {
+export function resetTimer(): AppThunkAction<SetTimerAction> {
   return (dispatch, getState) => {
     const { timePerTurn } = getState().settingsReducer;
 

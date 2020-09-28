@@ -11,18 +11,16 @@ interface GameState {
 const initialState: GameState = { round: 1, timer: 0, words: words };
 
 function gameReducer(state: GameState = initialState, action: GameAction): GameState {
-  let newState: GameState;
-
   switch (action.type) {
     case GameActionType.DECREMENT_TIMER:
       return {
         ...state,
         timer: state.timer > 0 ? state.timer - 1 : state.timer,
       };
-    case GameActionType.RESET_TIMER:
+    case GameActionType.SET_TIMER:
       return {
         ...state,
-        timer: action.payload,
+        timer: action.value,
       };
     case GameActionType.INCREMENT_ROUND:
       return {
@@ -30,10 +28,8 @@ function gameReducer(state: GameState = initialState, action: GameAction): GameS
         round: state.round + 1,
       };
     default:
-      newState = { ...state };
+      return { ...state };
   }
-
-  return newState;
 }
 
 export default gameReducer;
