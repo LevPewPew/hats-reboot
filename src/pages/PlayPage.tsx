@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { Timer, WordDisplay } from 'src/components';
+import { Timer } from 'src/components';
 import { GeneralBtn } from 'src/components/buttons';
+import { WordDisplay } from 'src/components/layouts';
 import { decrementTimer, resetTimer } from 'src/actions/play-actions';
 import { incrementPlayersScore } from 'src/actions/game-actions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -134,7 +135,6 @@ export const PlayPage: React.FC<PlayPageProps> = ({ className }) => {
   }, [timer]);
 
   useEffect(() => {
-    // TODO change to not make it sudden jarring change of screen, have a prompt or something first
     if (hat.length === 0) {
       history.push('/scores');
     }

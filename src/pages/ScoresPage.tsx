@@ -14,7 +14,7 @@ export const ScorePage: React.FC<ScorePageProps> = ({ className }) => {
 
   return (
     <main className={className}>
-      <h1>Round {round} complete!</h1>
+      <h1>Round {round + 1} complete!</h1>
       <h2>SCORES</h2>
       <ScoreTable allScores={players} />
     </main>
