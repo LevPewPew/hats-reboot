@@ -99,8 +99,7 @@ export const PlayPage: React.FC<PlayPageProps> = ({ className }) => {
     console.log('handleCorrectClick');
     removeWord(currentWord);
     pickWord();
-    // TODO increment score
-    // dispatch(incrementPlayersScore(getClueGiver().name, round));
+    dispatch(incrementPlayersScore(getClueGiver().name, round));
   };
 
   useEffect(() => {
