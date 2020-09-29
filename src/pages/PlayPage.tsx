@@ -33,10 +33,6 @@ export const PlayPage: React.FC<PlayPageProps> = ({ className }) => {
   const intervalId = useRef(0);
   const history = useHistory();
 
-  const pickWord = (): void => {
-    setCurrentWord(sample(hat));
-  };
-
   const removeWord = (correctWord: string): void => {
     const newHat = hat.filter((e) => e !== correctWord);
     setHat(newHat);
@@ -63,32 +59,26 @@ export const PlayPage: React.FC<PlayPageProps> = ({ className }) => {
     }
   };
 
-  const setCurrentTurnWithLastPlayerCheck = async (): Promise<void> => {
-    console.log('xxx: ', players.length - 1);
+  const setCurrentTurnWithLastPlayerCheck = (): void => {
     if (currentTurn === players.length - 1) {
-      console.log('wut1');
       setCurrentTurn(0);
     } else {
-      console.log('wut2');
       setCurrentTurn(currentTurn + 1);
     }
   };
 
-  const handleNextPlayerClick = async (): Promise<void> => {
-    console.log('handleNextPlayerClick');
+  const handleNextPlayerClick = (): void => {
     setCurrentTurnWithLastPlayerCheck();
     dispatch(resetTimer());
-    pickWord();
+    setCurrentWord(sample(hat));
   };
 
   const handleGoClick = (): void => {
-    console.log('handleGoClick');
     setIsTimerTicking(true);
     dispatch(decrementTimer());
   };
 
   const handlePauseResumeClick = (): void => {
-    console.log('handlePauseResumeClick');
     if (isTimerTicking) {
       setIsTimerTicking(false);
     } else {
@@ -97,9 +87,8 @@ export const PlayPage: React.FC<PlayPageProps> = ({ className }) => {
   };
 
   const handleCorrectClick = (): void => {
-    console.log('handleCorrectClick');
     removeWord(currentWord);
-    pickWord();
+    setCurrentWord(sample(hat));
     dispatch(incrementPlayersScore(getClueGiver().name, round));
   };
 
@@ -107,7 +96,7 @@ export const PlayPage: React.FC<PlayPageProps> = ({ className }) => {
     setCurrentClueGiver(getClueGiver());
     setCurrentGuesser(getGuesser());
     dispatch(resetTimer());
-    pickWord();
+    setCurrentWord(sample(hat));
   }, []);
 
   useEffect(() => {
@@ -121,7 +110,7 @@ export const PlayPage: React.FC<PlayPageProps> = ({ className }) => {
     } else {
       clearInterval(intervalId.current);
     }
-  }, [dispatch, isTimerTicking]);
+  }, [isTimerTicking]);
 
   useEffect(() => {
     if (firstRender.current) {
@@ -138,7 +127,7 @@ export const PlayPage: React.FC<PlayPageProps> = ({ className }) => {
     if (hat.length === 0) {
       history.push('/scores');
     }
-  }, [hat.length, history]);
+  }, [hat.length]);
 
   return (
     <main className={className}>

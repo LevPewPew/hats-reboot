@@ -11,15 +11,18 @@ const initialState: GameState = { players: players, words: words };
 
 function gameReducer(state: GameState = initialState, action: GameAction): GameState {
   switch (action.type) {
-    case GameActionType.INCREMENT_PLAYERS_SCORE:
-      let updatedPlayer = players.find((player) => player.name === action.playerName);
+    case GameActionType.INCREMENT_PLAYERS_SCORE: {
+      const updatedPlayer = players.find((player) => player.name === action.playerName);
+
       if (updatedPlayer) {
+        const playerIndex = players.findIndex((player) => player.name === action.playerName);
+        const newPlayers = players;
+
         updatedPlayer.scores[action.round] = updatedPlayer.scores[action.round]
           ? updatedPlayer.scores[action.round] + 1
           : 1;
-        const playerIndex = players.findIndex((player) => player.name === action.playerName);
-        let newPlayers = players;
         newPlayers.splice(playerIndex, 1, updatedPlayer);
+
         return {
           ...state,
           players: newPlayers,
@@ -27,8 +30,10 @@ function gameReducer(state: GameState = initialState, action: GameAction): GameS
       } else {
         return { ...state };
       }
-    default:
+    }
+    default: {
       return { ...state };
+    }
   }
 }
 

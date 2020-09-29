@@ -8,7 +8,7 @@ interface RowProps {
   scores: Array<number>;
 }
 
-const RowSubComponent: React.FC<RowProps> = ({ className, name, team, scores }) => {
+const RowSubComponent: React.FC<RowProps> = ({ className, name, scores }) => {
   return (
     <div className={className}>
       <div className="name">{name}</div>
