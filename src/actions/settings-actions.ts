@@ -14,7 +14,7 @@ export function decrementTimePerTurn(): DecrementTimePerTurnAction {
   };
 }
 
-export function resetTimePerTurn(): IncrementTimePerTurnAction {
+export function incrementTimePerTurn(): IncrementTimePerTurnAction {
   return {
     type: SettingsActionType.INCREMENT_TIME_PER_TURN,
   };
