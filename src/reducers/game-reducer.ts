@@ -18,7 +18,8 @@ function gameReducer(state: GameState = initialState, action: GameAction): GameS
           ? updatedPlayer.scores[action.round] + 1
           : 1;
         const playerIndex = players.findIndex((player) => player.name === action.playerName);
-        const newPlayers = players.splice(playerIndex, playerIndex + 1, updatedPlayer);
+        let newPlayers = players;
+        newPlayers.splice(playerIndex, 1, updatedPlayer);
         return {
           ...state,
           players: newPlayers,
@@ -26,7 +27,6 @@ function gameReducer(state: GameState = initialState, action: GameAction): GameS
       } else {
         return { ...state };
       }
-
     default:
       return { ...state };
   }

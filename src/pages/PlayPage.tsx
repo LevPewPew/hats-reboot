@@ -44,7 +44,6 @@ export const PlayPage: React.FC<PlayPageProps> = ({ className }) => {
 
   const getClueGiver = (): Player => {
     const clueGiver = players.find((player) => player.turnOrder === currentTurn);
-    console.log(currentTurn);
 
     if (clueGiver) {
       return clueGiver;
@@ -65,6 +64,7 @@ export const PlayPage: React.FC<PlayPageProps> = ({ className }) => {
   };
 
   const setCurrentTurnWithLastPlayerCheck = async (): Promise<void> => {
+    console.log('xxx: ', players.length - 1);
     if (currentTurn === players.length - 1) {
       console.log('wut1');
       setCurrentTurn(0);
