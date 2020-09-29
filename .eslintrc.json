@@ -8,6 +8,9 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended"
   ],
+  "env": {
+    "node": true
+  },
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "module",

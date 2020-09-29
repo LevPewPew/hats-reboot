@@ -6,7 +6,7 @@ interface PlayState {
   timer: number;
 }
 
-const initialState: PlayState = {
+export const initialState: PlayState = {
   round: 0,
   timer: 0,
 };
