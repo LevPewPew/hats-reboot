@@ -5,16 +5,16 @@ interface RowProps {
   className?: string;
   name: string;
   team: number;
-  scores: Array<Score>;
+  scores: Array<number>;
 }
 
 const RowSubComponent: React.FC<RowProps> = ({ className, name, team, scores }) => {
   return (
     <div className={className}>
       <div className="name">{name}</div>
-      {scores.map((scoreInfo, i) => (
+      {scores.map((score, i) => (
         <div key={i} className="score">
-          {scoreInfo.score}
+          {score}
         </div>
       ))}
     </div>
@@ -51,7 +51,7 @@ export const ScoreTable: React.FC<ScoreTableProps> = ({ className, allScores }) 
         <div className="header"></div>
         {allScores[0].scores.map((score, i) => (
           <div key={i} className="header">
-            Round {score.round}
+            Round {i + 1}
           </div>
         ))}
         <div className="header">Total</div>
@@ -61,8 +61,8 @@ export const ScoreTable: React.FC<ScoreTableProps> = ({ className, allScores }) 
       ))}
       {allScores.map((_, i) => {
         if (i % 2 === 0 && i < allScores.length - 1) {
-          const totalPlayer1 = allScores[i].scores.reduce((acc, cv) => acc + cv.score, 0);
-          const totalPlayer2 = allScores[i + 1].scores.reduce((acc, cv) => acc + cv.score, 0);
+          const totalPlayer1 = allScores[i].scores.reduce((acc, cv) => acc + cv, 0);
+          const totalPlayer2 = allScores[i + 1].scores.reduce((acc, cv) => acc + cv, 0);
           const total = totalPlayer1 + totalPlayer2;
 
           return <Total key={i} total={total} />;

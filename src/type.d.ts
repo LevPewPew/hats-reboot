@@ -1,14 +1,9 @@
 type Optional<T> = T | undefined;
 
-interface Score {
-  round: number;
-  score: number;
-}
-
 interface Player {
   name: string;
   team: number;
-  scores: Array<Score>;
+  scores: Array<number>;
   turnOrder: number;
 }
 

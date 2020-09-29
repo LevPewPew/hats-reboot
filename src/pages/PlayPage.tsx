@@ -14,18 +14,23 @@ interface PlayPageProps {
 }
 
 export const PlayPage: React.FC<PlayPageProps> = ({ className }) => {
-  const history = useHistory();
-  const round = useSelector<RootState, number>((state) => state.playReducer.round);
-  const timer = useSelector<RootState, number>((state) => state.playReducer.timer);
   const players = useSelector<RootState, Array<Player>>((state) => state.gameReducer.players);
   const words = useSelector<RootState, Array<string>>((state) => state.gameReducer.words);
+  const round = useSelector<RootState, number>((state) => state.playReducer.round);
+  const timer = useSelector<RootState, number>((state) => state.playReducer.timer);
+  const timePerTurn = useSelector<RootState, number>((state) => state.settingsReducer.timePerTurn);
+
   const [hat, setHat] = useState(words);
   const [currentTurn, setCurrentTurn] = useState(0);
   const [isTimerTicking, setIsTimerTicking] = useState(false);
   const [currentWord, setCurrentWord] = useState('');
+  const [currentClueGiver, setCurrentClueGiver] = useState({ name: 'error', team: 0, scores: [0], turnOrder: 0 });
+  const [currentGuesser, setCurrentGuesser] = useState({ name: 'error', team: 0, scores: [0], turnOrder: 0 });
+
   const dispatch = useDispatch();
   const firstRender = useRef(true);
   const intervalId = useRef(0);
+  const history = useHistory();
 
   const pickWord = (): void => {
     setCurrentWord(sample(hat));
@@ -38,6 +43,7 @@ export const PlayPage: React.FC<PlayPageProps> = ({ className }) => {
 
   const getClueGiver = (): Player => {
     const clueGiver = players.find((player) => player.turnOrder === currentTurn);
+    console.log(currentTurn);
 
     if (clueGiver) {
       return clueGiver;
@@ -57,9 +63,57 @@ export const PlayPage: React.FC<PlayPageProps> = ({ className }) => {
     }
   };
 
-  useEffect(() => {
+  const setCurrentTurnWithLastPlayerCheck = async (): Promise<void> => {
+    if (currentTurn === players.length - 1) {
+      console.log('wut1');
+      setCurrentTurn(0);
+    } else {
+      console.log('wut2');
+      setCurrentTurn(currentTurn + 1);
+    }
+  };
+
+  const handleNextPlayerClick = async (): Promise<void> => {
+    console.log('handleNextPlayerClick');
+    setCurrentTurnWithLastPlayerCheck();
     dispatch(resetTimer());
+    pickWord();
+  };
+
+  const handleGoClick = (): void => {
+    console.log('handleGoClick');
+    setIsTimerTicking(true);
+    dispatch(decrementTimer());
+  };
+
+  const handlePauseResumeClick = (): void => {
+    console.log('handlePauseResumeClick');
+    if (isTimerTicking) {
+      setIsTimerTicking(false);
+    } else {
+      setIsTimerTicking(true);
+    }
+  };
+
+  const handleCorrectClick = (): void => {
+    console.log('handleCorrectClick');
+    removeWord(currentWord);
+    pickWord();
+    // TODO increment score
+    // dispatch(incrementPlayersScore(getClueGiver().name, round));
+  };
+
+  useEffect(() => {
+    setCurrentClueGiver(getClueGiver());
+    setCurrentGuesser(getGuesser());
+    dispatch(resetTimer());
+    pickWord();
   }, []);
+
+  useEffect(() => {
+    setCurrentClueGiver(getClueGiver());
+    setCurrentGuesser(getGuesser());
+  }, [currentTurn]);
 
   useEffect(() => {
     if (isTimerTicking) {
@@ -70,60 +124,47 @@ export const PlayPage: React.FC<PlayPageProps> = ({ className }) => {
   }, [dispatch, isTimerTicking]);
 
   useEffect(() => {
-    if (hat.length === 0) {
-      history.push('/scores');
-    }
-  }, [hat.length, history]);
-
-  useEffect(() => {
     if (firstRender.current) {
       firstRender.current = false;
       return;
     }
 
     if (timer === 0) {
-      if (currentTurn < players.length - 1) {
-        setCurrentTurn(currentTurn + 1);
-        dispatch(resetTimer());
-        setIsTimerTicking(false);
-      } else {
-        setCurrentTurn(0);
-      }
+      setIsTimerTicking(false);
     }
   }, [timer]);
 
+  useEffect(() => {
+    // TODO change to not make it sudden jarring change of screen, have a prompt or something first
+    if (hat.length === 0) {
+      history.push('/scores');
+    }
+  }, [hat.length, history]);
+
   return (
     <main className={className}>
-      <div>Current Round: {round}</div>
-      <div>gives clues: {getClueGiver().name}</div>
-      <div>guesses: {getGuesser().name}</div>
+      <div>Current Round: {round + 1}</div>
+      <div>gives clues: {currentClueGiver.name}</div>
+      <div>guesses: {currentGuesser.name}</div>
       <WordDisplay>
         <span>{currentWord}</span>
       </WordDisplay>
       <Timer />
-      <GeneralBtn handleClick={() => dispatch(decrementTimer())}>
-        <div>DECREMENT</div>
+      <GeneralBtn handleClick={handleNextPlayerClick} disabled={timer !== 0}>
+        <div>NEXT PLAYER / CONFIRM / READY UP</div>
       </GeneralBtn>
-      <GeneralBtn handleClick={() => dispatch(resetTimer())}>
-        <div>RESET</div>
-      </GeneralBtn>
-      <GeneralBtn handleClick={() => (isTimerTicking ? setIsTimerTicking(false) : setIsTimerTicking(true))}>
-        <div>{isTimerTicking ? 'PAUSE' : 'RESUME'}</div>
+      <GeneralBtn handleClick={handleGoClick} disabled={timer !== timePerTurn || isTimerTicking}>
+        <div>GO!</div>
       </GeneralBtn>
       <GeneralBtn
-        handleClick={() => {
-          pickWord();
-          setIsTimerTicking(true);
-        }}
+        handleClick={handlePauseResumeClick}
+        disabled={!(timer !== timePerTurn || isTimerTicking) || timer === 0}
       >
-        <div>START!</div>
+        <div>{isTimerTicking ? 'II' : 'i>'}</div>
       </GeneralBtn>
       <GeneralBtn
-        handleClick={() => {
-          removeWord(currentWord);
-          pickWord();
-          dispatch(incrementPlayersScore(getClueGiver().name, round));
-        }}
+        handleClick={handleCorrectClick}
+        disabled={!(timer !== timePerTurn || isTimerTicking) || !isTimerTicking}
       >
         <div>CORRECT</div>
       </GeneralBtn>

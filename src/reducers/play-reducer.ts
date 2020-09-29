@@ -7,7 +7,7 @@ interface PlayState {
 }
 
 const initialState: PlayState = {
-  round: 1,
+  round: 0,
   timer: 0,
 };
 

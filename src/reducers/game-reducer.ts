@@ -12,10 +12,19 @@ const initialState: GameState = { players: players, words: words };
 function gameReducer(state: GameState = initialState, action: GameAction): GameState {
   switch (action.type) {
     case GameActionType.INCREMENT_PLAYERS_SCORE:
-      return {
-        // TODO logic to increase a specific players score
-        ...state,
-      };
+      let updatedPlayer = players.find((player) => player.name === action.playerName);
+      if (updatedPlayer) {
+        updatedPlayer.scores[action.round]++;
+        const playerIndex = players.findIndex((player) => player.name === action.playerName);
+        const newPlayers = players.splice(playerIndex, playerIndex + 1, updatedPlayer);
+        return {
+          ...state,
+          players: newPlayers,
+        };
+      } else {
+        return { ...state };
+      }
+
     default:
       return { ...state };
   }
