@@ -1,5 +1,5 @@
 ---
-name: GitHub CI #blah
+name: GitHub CI
 
 on:
   push:
