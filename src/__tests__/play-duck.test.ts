@@ -10,8 +10,8 @@ const mockStore = configureMockStore(middlewares);
 
 describe('in play duck', () => {
   describe('reducer and actions', () => {
-    describe('when the decrementTimer action is dispatched', () => {
-      it('should decrement the timer state by 1', () => {
+    describe("when the 'decrementTimer' action is dispatched", () => {
+      it("'timer' state should decrement by 1", () => {
         const INITIAL_TIMER = 123;
         const newInitialState = { ...initialState };
         newInitialState.timer = INITIAL_TIMER;
@@ -23,7 +23,7 @@ describe('in play duck', () => {
         expect(result).toEqual(nextState);
       });
 
-      it('should NOT decrement the timer below 0', () => {
+      it("'timer' state should NOT decrement below 0", () => {
         const result = playReducer(undefined, playActions.decrementTimer());
 
         const nextState = initialState;
@@ -31,9 +31,10 @@ describe('in play duck', () => {
       });
     });
 
-    describe('when the setTimer action is dispatched', () => {
-      it('should set the timer to the given action.value', () => {
+    describe("when the 'setTimer' action is dispatched", () => {
+      it("'timer' state should be set to the given 'action.value'", () => {
         const TIMER = 456;
+
         const result = playReducer(undefined, playActions.setTimer(TIMER));
 
         const nextState = { ...initialState };
@@ -42,8 +43,8 @@ describe('in play duck', () => {
       });
     });
 
-    describe('when the resetTimer thunk action is dispatched', () => {
-      it('should set the timer to the timePerTurn state from settings duck', () => {
+    describe("when the 'resetTimer' thunk action is dispatched", () => {
+      it("'timer' state should be set to the 'timePerTurn' state from 'settings' duck", () => {
         const TIME_PER_TURN = 45;
         const rootState = {
           ...initialState,
@@ -57,6 +58,16 @@ describe('in play duck', () => {
 
         const expectedActions = [playActions.setTimer(TIME_PER_TURN)];
         expect(rootStore.getActions()).toEqual(expectedActions);
+      });
+    });
+
+    describe("when the 'incrementRound' action is dispatched", () => {
+      it("'round' state should increment by 1", () => {
+        const result = playReducer(undefined, playActions.incrementRound());
+
+        const nextState = { ...initialState };
+        nextState.round = initialState.round + 1;
+        expect(result).toEqual(nextState);
       });
     });
   });
