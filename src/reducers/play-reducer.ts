@@ -16,7 +16,7 @@ function playReducer(state: PlayState = initialState, action: PlayAction): PlayS
     case PlayActionType.DECREMENT_TIMER:
       return {
         ...state,
-        timer: state.timer > 0 ? state.timer - 1 : state.timer,
+        timer: state.timer - 1,
       };
     case PlayActionType.SET_TIMER:
       return {
