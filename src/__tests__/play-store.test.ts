@@ -12,13 +12,14 @@ describe('in play duck', () => {
   describe('reducer and actions', () => {
     describe('when the decrementTimer action is dispatched', () => {
       it('should decrement the timer state by 1', () => {
+        const INITIAL_TIMER = 123;
         const newInitialState = { ...initialState };
-        newInitialState.timer = 123;
+        newInitialState.timer = INITIAL_TIMER;
 
         const result = playReducer(newInitialState, playActions.decrementTimer());
 
         const nextState = { ...initialState };
-        nextState.timer = 122;
+        nextState.timer = INITIAL_TIMER - 1;
         expect(result).toEqual(nextState);
       });
 
@@ -32,10 +33,11 @@ describe('in play duck', () => {
 
     describe('when the setTimer action is dispatched', () => {
       it('should set the timer to the given action.value', () => {
-        const result = playReducer(undefined, playActions.setTimer(456));
+        const TIMER = 456;
+        const result = playReducer(undefined, playActions.setTimer(TIMER));
 
         const nextState = { ...initialState };
-        nextState.timer = 456;
+        nextState.timer = TIMER;
         expect(result).toEqual(nextState);
       });
     });

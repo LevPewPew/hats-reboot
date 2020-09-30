@@ -1,11 +1,27 @@
-name: CI
+---
+name: GitHub CI
+
 on: push
+
 jobs:
-  build:
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Install modules
-      run: yarn
-    - name: Run ESLint
-      run: yarn eslint . --ext .js,.jsx,.ts,.tsx
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Install modules
+        run: yarn
+      - name: Lint Code Base
+        run: yarn lint
+
+  unit-test:
+    name: Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Install modules
+        run: yarn
+      - name: Test Code Base
+        run: yarn test:nowatch
