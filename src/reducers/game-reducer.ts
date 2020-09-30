@@ -1,5 +1,4 @@
 import { GameAction } from '@hats-reboot/state-management-types';
-import { words, players } from '../seed-data';
 import { GameActionType } from 'src/actions/action-types';
 
 interface GameState {
@@ -7,16 +6,16 @@ interface GameState {
   words: Array<string>;
 }
 
-const initialState: GameState = { players: players, words: words };
+export const initialState: GameState = { players: [], words: [] };
 
 function gameReducer(state: GameState = initialState, action: GameAction): GameState {
   switch (action.type) {
     case GameActionType.INCREMENT_PLAYERS_SCORE: {
-      const updatedPlayer = players.find((player) => player.name === action.playerName);
+      const updatedPlayer = state.players.find((player) => player.name === action.playerName);
 
       if (updatedPlayer) {
-        const playerIndex = players.findIndex((player) => player.name === action.playerName);
-        const newPlayers = players;
+        const playerIndex = state.players.findIndex((player) => player.name === action.playerName);
+        const newPlayers = [...state.players];
 
         updatedPlayer.scores[action.round] = updatedPlayer.scores[action.round]
           ? updatedPlayer.scores[action.round] + 1
