@@ -3,7 +3,7 @@
 // then i will remove this and create the setup screens and forms for players
 // to populate the data
 
-export const players = [
+export const playersSeed: Array<Player> = [
   {
     name: 'jack',
     team: 0,
@@ -42,7 +42,7 @@ export const players = [
   },
 ];
 
-export const words = [
+export const wordsSeed: Array<string> = [
   'apple',
   'banana',
   'cranberry',
