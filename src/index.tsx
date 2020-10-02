@@ -7,6 +7,9 @@ import rootReducer from './reducers/root-reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import Amplify from 'aws-amplify';
+import config from './aws-exports';
+Amplify.configure(config);
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 

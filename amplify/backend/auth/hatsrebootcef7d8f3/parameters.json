@@ -1,0 +1,36 @@
+{
+  "identityPoolName": "hatsrebootcef7d8f3_identitypool_cef7d8f3",
+  "allowUnauthenticatedIdentities": false,
+  "resourceNameTruncated": "hatsrecef7d8f3",
+  "userPoolName": "hatsrebootcef7d8f3_userpool_cef7d8f3",
+  "autoVerifiedAttributes": ["email"],
+  "mfaConfiguration": "OFF",
+  "mfaTypes": ["SMS Text Message"],
+  "smsAuthenticationMessage": "Your authentication code is {####}",
+  "smsVerificationMessage": "Your verification code is {####}",
+  "emailVerificationSubject": "Your verification code",
+  "emailVerificationMessage": "Your verification code is {####}",
+  "defaultPasswordPolicy": false,
+  "passwordPolicyMinLength": 8,
+  "passwordPolicyCharacters": [],
+  "requiredAttributes": ["email"],
+  "userpoolClientGenerateSecret": true,
+  "userpoolClientRefreshTokenValidity": 30,
+  "userpoolClientWriteAttributes": ["email"],
+  "userpoolClientReadAttributes": ["email"],
+  "userpoolClientLambdaRole": "hatsrecef7d8f3_userpoolclient_lambda_role",
+  "userpoolClientSetAttributes": false,
+  "sharedId": "cef7d8f3",
+  "resourceName": "hatsrebootcef7d8f3",
+  "authSelections": "identityPoolAndUserPool",
+  "authRoleArn": {
+    "Fn::GetAtt": ["AuthRole", "Arn"]
+  },
+  "unauthRoleArn": {
+    "Fn::GetAtt": ["UnauthRole", "Arn"]
+  },
+  "useDefault": "default",
+  "userPoolGroupList": [],
+  "serviceName": "Cognito",
+  "dependsOn": []
+}
